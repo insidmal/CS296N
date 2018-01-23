@@ -1,0 +1,33 @@
+﻿@model Quiz
+@{
+    ViewData["Title"] = "Quiz";
+    int i = 0;
+}
+
+<h2>Quiz Answer Check</h2>
+<form method="post">
+    <ol>
+        @foreach (string Q in Model.Questions)
+        {
+            <li>
+                @Q<br />
+                @foreach (string A in Model.Answers)
+                {
+
+
+                <strong>@Model.AnsCheck[i]</strong>
+}
+
+
+            </li>
+            i++;
+        }
+
+
+        </ol>
+
+    <button type="submit">Check Answers</button>
+
+</form>
+
+

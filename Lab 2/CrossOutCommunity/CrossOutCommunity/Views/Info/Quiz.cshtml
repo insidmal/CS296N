@@ -1,0 +1,45 @@
+﻿@model Quiz
+@{
+    ViewData["Title"] = "Quiz";
+    int i = 0;
+}
+
+<h2>Quiz</h2>
+<form method="post" action="CheckQuiz">
+    <ol>
+        @foreach (string Q in Model.Questions)
+        {
+            string Qn = "Q" + i;
+            <li>
+                @Q<br />
+                @foreach (string A in Model.Answers)
+                {
+
+                    if (i == 0)
+                    {<input asp-for="q1" value="@A" type="radio" />@A<br /> }
+
+                else if (i == 1)
+                { <input asp-for="q2" value="@A" type="radio" />@A<br />}
+            else if (i == 2)
+            { <input asp-for="q3" value="@A" type="radio" />@A<br /> }
+        else if (i == 3)
+        { <input asp-for="q4" value="@A" type="radio" />@A<br /> }
+    else if (i == 4)
+    { <input asp-for="q5" value="@A" type="radio" />@A<br />}
+
+
+}
+
+
+            </li>
+            i++;
+        }
+
+
+        </ol>
+
+    <button type="submit">Check Answers</button>
+
+</form>
+
+
