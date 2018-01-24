@@ -22,7 +22,7 @@ namespace CrossOutCommunity.Models
         public List<string> Answers { get { return new List<string> { "Lunatics", "Nomads", "Engineers", "Steppenwolfs", "Scavengers" }; } }
          public List<string> QuestionNums { get { return new List<string> { "q1", "q2", "q3", "q4", "q5" }; } }
 
-        public List<string> AnsCheck { get; set; }
+        public String[] AnsCheck { get; set; }
 
         public string q1 { get; set; }
         public string q2 { get; set; }

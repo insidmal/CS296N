@@ -1,0 +1,23 @@
+﻿@model List<string>
+@{
+    ViewData["Title"] = "Quiz";
+    int i = 0;
+}
+
+<h2>Quiz Answer Check</h2>
+    <ol>
+        <li>@Model[0]</li>
+        <li>@Model[1]</li>
+        <li>@Model[2]</li>
+        <li>@Model[3]</li>
+        <li>@Model[4]</li>
+
+
+    </ol>
+    <p>
+        <strong>You got @Model[5] Answers Correct!</strong>
+    </p>
+
+    <a asp-action="Quiz">Take the Quiz Again!</a>
+
+
