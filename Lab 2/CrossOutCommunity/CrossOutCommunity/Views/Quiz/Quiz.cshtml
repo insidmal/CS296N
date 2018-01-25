@@ -1,45 +1,46 @@
 ﻿@model Quiz
 @{
     ViewData["Title"] = "Quiz";
-    int i = 0;
+    int i = @Model.QuestionNum + 1;
+    if (i > @Model.Answers.Count()) i = @Model.Answers.Count();
 }
 
-<h2>Quiz</h2>
-<form method="post" action="CheckQuiz">
-    <ol>
-        @foreach (string Q in Model.Questions)
-        {
-            string Qn = "Q" + i;
-            <li>
-                @Q<br />
-                @foreach (string A in Model.Answers)
-                {
+<h2>Quiz Question @i of @Model.Answers.Count().ToString()</h2>
 
-                    if (i == 0)
-                    {<input asp-for="q1" value="@A" type="radio" />@A<br /> }
+@if (Model.QuestionNum < Model.Answers.Count())
+{
 
-                else if (i == 1)
-                { <input asp-for="q2" value="@A" type="radio" />@A<br />}
-            else if (i == 2)
-            { <input asp-for="q3" value="@A" type="radio" />@A<br /> }
-        else if (i == 3)
-        { <input asp-for="q4" value="@A" type="radio" />@A<br /> }
-    else if (i == 4)
-    { <input asp-for="q5" value="@A" type="radio" />@A<br />}
+    @if (Model.QuestionNum != 0)
+    {
+        if (Model.LastCorrect == true)
+        {<p>You answered the previous question correctly!</p>}
+        else
+        { <p>Oh no, you missed that one!</p>}
+        <p>You have answered @Model.NumCorrect of @Model.Answers.Count().ToString() questions correctly.</p>
+    }
 
+
+
+    <form method="post" action="CheckQuiz">
+        <label asp-for="@Model.Questions[Model.QuestionNum]">@Model.Questions[Model.QuestionNum]</label><br />
+        @foreach (string A in Model.Answers)
+        {<input asp-for="@Model.Answer" value="@A" type="radio" />@A<br />}
+        <input asp-for="@Model.QuestionNum" value="@Model.QuestionNum" type="hidden" />
+        <input asp-for="@Model.NumCorrect" value="@Model.NumCorrect" type="hidden" />
+
+
+
+
+
+        <button type="submit">Check Answer</button>
+
+    </form>
+}
+else
+{
+
+    <p><h3>You've finished the quiz!</h3>You answered @Model.NumCorrect of @Model.Answers.Count().ToString() questions correctly.<br />
+    <a asp-action="Quiz">Click Here to Take the Quiz Again</a></p>
 
 }
-
-
-            </li>
-            i++;
-        }
-
-
-        </ol>
-
-    <button type="submit">Check Answers</button>
-
-</form>
-
 

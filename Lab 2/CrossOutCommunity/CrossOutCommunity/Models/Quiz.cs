@@ -20,15 +20,11 @@ namespace CrossOutCommunity.Models
             }
         }
         public List<string> Answers { get { return new List<string> { "Lunatics", "Nomads", "Engineers", "Steppenwolfs", "Scavengers" }; } }
-         public List<string> QuestionNums { get { return new List<string> { "q1", "q2", "q3", "q4", "q5" }; } }
-
+         public int QuestionNum { get; set; }
+        public bool LastCorrect { get; set; }
+        public string Answer { get; set; }
+        public int NumCorrect { get; set; }
         public String[] AnsCheck { get; set; }
-
-        public string q1 { get; set; }
-        public string q2 { get; set; }
-        public string q3 { get; set; }
-        public string q4 { get; set; }
-        public string q5 { get; set; }
 
     }
 }
