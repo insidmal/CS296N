@@ -9,6 +9,6 @@ namespace CrossOutCommunity.Repositories
     interface IMessageRepository
     {
         IQueryable<Message> GetAllMessages();
-        void AddMessage(Message m);
+        Message AddMessage(Message m);
     }
 }
