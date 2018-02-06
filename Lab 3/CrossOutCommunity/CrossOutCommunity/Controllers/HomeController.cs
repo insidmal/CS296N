@@ -20,13 +20,6 @@ namespace CrossOutCommunity.Controllers
             return View();
         }
 
-        public IActionResult Contact(Contact c)
-        {
-            ViewData["Message"] = "Contact Us";
-
-            return View(c);
-        }
-
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

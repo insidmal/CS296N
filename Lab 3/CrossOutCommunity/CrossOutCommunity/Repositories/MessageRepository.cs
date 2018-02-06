@@ -15,9 +15,9 @@ namespace CrossOutCommunity.Repositories
             context = ctx;
         }
 
-        public IQueryable<Message> GetAllMessages()
+        public List<Message> GetAllMessages()
         {
-            return context.Messages;
+            return context.Messages.ToList<Message>();
         }
 
         public Message AddMessage(Message mess)

@@ -1,9 +1,0 @@
-bookinfo class example week 3 has repos and controller examples
-
-still needs add method
-
-use interfaces for practice with both fake/real repos and as paramter
-
-
-
-fake repo just needs to have dbcontext replaced with list and constructor replaced with the array list

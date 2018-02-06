@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CrossOutCommunity.Repositories
 {
-    interface IUserRepository
+    public interface IUserRepository
     {
         IEnumerable<User> GetAllUsers();
         User GetUserByName(string name);

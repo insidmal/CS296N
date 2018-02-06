@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace CrossOutCommunity.Repositories
 {
-    interface IMessageRepository
+    public interface IMessageRepository
     {
-        IQueryable<Message> GetAllMessages();
+        //IQueryable<Message> GetAllMessages();
+        List<Message> GetAllMessages();
         Message AddMessage(Message m);
     }
 }
