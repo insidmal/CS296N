@@ -13,7 +13,7 @@ namespace CrossOutCommunity.Repositories
         public TestMessageRepository()
         {
             messages.Add(new Message { ContactMessage = "This is a contact message.", ContactUser = new User { Name = "John", EmailAddress = "contact@conquest-marketing.com" } });
-                messages.Add(new Message { ContactMessage = "This is a contact message.", ContactUser = new User { Name = "John", EmailAddress = "contact@conquest-marketing.com" } });
+                messages.Add(new Message { ContactMessage = "This is also contact message.", ContactUser = new User { Name = "Frederick", EmailAddress = "freddy@krueger.com" } });
         }
 
         public List<Message> GetAllMessages()
