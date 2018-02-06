@@ -1,28 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using CrossOutCommunity.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CrossOutCommunity.Controllers
 {
-    public class HomeController : Controller
+    public class InfoController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult History()
+        public IActionResult ImportantLocations()
         {
             return View();
         }
-
-        public IActionResult Error()
+        public IActionResult SignificantPeople()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
         }
     }
 }
