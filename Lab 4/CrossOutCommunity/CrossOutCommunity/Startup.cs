@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CrossOutCommunity.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,8 +23,10 @@ namespace CrossOutCommunity
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<CCDbContext>(options =>
+    options.UseSqlServer(Configuration.GetConnectionString("CCDbContext")));
             services.AddMvc();
-            services.AddTransient<IMessageRepository, TestMessageRepository>();
+            services.AddTransient<IMessageRepository, MessageRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

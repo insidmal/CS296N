@@ -7,6 +7,7 @@ namespace CrossOutCommunity.Models
 {
     public class Message
     {
+        public int ID { get; set; }
         public string ContactMessage { get; set; }
         public User ContactUser { get; set; }
     }
