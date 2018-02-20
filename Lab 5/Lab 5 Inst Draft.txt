@@ -1,0 +1,6 @@
+Add
+	Navbar
+	3+ Buttons
+	3+ Badges
+	Some other bootstrap style of our choice
+	Grid System (containers I think)
