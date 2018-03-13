@@ -14,38 +14,39 @@ namespace CrossoutCommunity.Tests
         List<Message> messages;
 
 
-        public ContactTests()
-        {
-            repo = new TestMessageRepository();
-            messages = repo.GetAllMessages();
-            controller = new ContactController(repo);
-        }
+        //public ContactTests()
+        //{
+        //    repo = new TestMessageRepository();
+        //    messages = repo.GetAllMessages();
+        //    controller = new ContactController(repo);
+        //}
 
-        [Fact]
-        public void GetMessageTest()
-        {
+        // [Fact]
+        //public void GetMessageTest()
+        //{
 
-            var mess = controller.ViewContact().ViewData.Model as List<Message>;
+        //    var mess = controller.ViewContact().ViewData.Model as List<Message>;
 
-           for (int i = 0; i<messages.Count;i++)
-            {
-                Assert.Equal(messages[i].ContactMessage, mess[i].ContactMessage);
-                Assert.Equal(messages[i].ContactUser.EmailAddress, mess[i].ContactUser.EmailAddress);
-                Assert.Equal(messages[i].ContactUser.Name, mess[i].ContactUser.Name);
+        //   for (int i = 0; i<messages.Count;i++)
+        //    {
+        //        Assert.Equal(messages[i].ContactMessage, mess[i].ContactMessage);
+        //        Assert.Equal(messages[i].ContactUser.EmailAddress, mess[i].ContactUser.EmailAddress);
+        //        Assert.Equal(messages[i].ContactUser.Name, mess[i].ContactUser.Name);
 
-            }
+        //    }
 
-        }
+        //}
 
-        [Fact]
-        public void AddMessageTest()
-        {
-            messages.Add(new Message { ContactMessage = "New Message", ContactUser = new User { Name="Tj", EmailAddress="em" } });
-            Assert.Equal(3, messages.Count);
-            Assert.Equal("Tj", messages[2].ContactUser.Name.ToString());
+        //[Fact]
+        //public void AddMessageTest()
+        //{
+        //    messages.Add(new Message { ContactMessage = "New Message", ContactUser = new User { Name="Tj", EmailAddress="em" } });
+        //    Assert.Equal(3, messages.Count);
+        //    Assert.Equal("Tj", messages[2].ContactUser.Name.ToString());
 
-        }
-
-
+        //}
     }
 }
+
+    
+

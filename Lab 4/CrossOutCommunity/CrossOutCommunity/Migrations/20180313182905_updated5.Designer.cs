@@ -11,9 +11,10 @@ using System;
 namespace CrossOutCommunity.Migrations
 {
     [DbContext(typeof(CCDbContext))]
-    partial class CCDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180313182905_updated5")]
+    partial class updated5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

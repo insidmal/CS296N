@@ -10,11 +10,11 @@ namespace CrossOutCommunity.Controllers
 {
     public class ContactController : Controller
     {
-        private IMessageRepository messageRepo;
+        private IUserRepository userRepo;
 
-        public ContactController(IMessageRepository repo)
+        public ContactController(IUserRepository repo)
         {
-            messageRepo = repo;
+            userRepo = repo;
         }
 
         public IActionResult Index()
@@ -32,7 +32,7 @@ namespace CrossOutCommunity.Controllers
         public ViewResult ViewContact()
         {
             
-            return View(messageRepo.GetAllMessages());
+            return View(userRepo.GetAllUsers());
         }
     }
 }

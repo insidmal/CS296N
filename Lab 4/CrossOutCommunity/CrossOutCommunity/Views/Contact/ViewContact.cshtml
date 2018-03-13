@@ -1,16 +1,17 @@
-﻿@model List<Message>;
+﻿@model List<User>;
 @{
     ViewData["Title"] = "View Contacts";
 }
 
 <h2>View Contacts</h2>
  @{
-     foreach(Message m in Model)
+     foreach(User u in Model)
      {
 <p>
-    <strong>Name:</strong> @m.ContactUser.Name<br />
-    <strong>Email Address:</strong>@m.ContactUser.EmailAddress<br />
-    <strong>Message:</strong> @m.ContactMessage<br />
+    <strong>Name:</strong> @u.Name<br />
+    <strong>Email Address:</strong>@u.EmailAddress<br />
+    <strong>Message:</strong> @u.messages[0].ContactMessage<br />
+
 </p>
 
 

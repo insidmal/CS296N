@@ -25,8 +25,8 @@ namespace CrossOutCommunity
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<CCDbContext>();
-                    SeedData.Initialize(context);
+                   
+                    SeedData.Initialize(services);
                 }
                 catch (Exception ex)
                 {

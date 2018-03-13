@@ -9,6 +9,6 @@ namespace CrossOutCommunity.Models
     {
         public int ID { get; set; }
         public string ContactMessage { get; set; }
-        public User ContactUser { get; set; }
+        public int UserID { get; set; }
     }
 }

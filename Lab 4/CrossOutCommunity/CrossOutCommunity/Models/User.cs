@@ -8,7 +8,12 @@ namespace CrossOutCommunity.Models
 {
     public class User
     {
-        public int ID { get; set; }
+        private List<Message> messages = new List<Message>();
+        public List<Message> Messages { get { return messages; } }
+
+
+
+        public int UserID { get; set; }
         public string Name { get; set; }
         public string EmailAddress { get; set; }
     }

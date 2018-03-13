@@ -11,9 +11,10 @@ using System;
 namespace CrossOutCommunity.Migrations
 {
     [DbContext(typeof(CCDbContext))]
-    partial class CCDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180313175209_updated2")]
+    partial class updated2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,31 +32,21 @@ namespace CrossOutCommunity.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("UserID");
-
                     b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("CrossOutCommunity.Models.User", b =>
                 {
-                    b.Property<int>("UserID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("EmailAddress");
 
                     b.Property<string>("Name");
 
-                    b.HasKey("UserID");
+                    b.HasKey("ID");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("CrossOutCommunity.Models.Message", b =>
-                {
-                    b.HasOne("CrossOutCommunity.Models.User")
-                        .WithMany("Messages")
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

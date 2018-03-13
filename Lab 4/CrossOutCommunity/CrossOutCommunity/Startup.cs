@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BookInfo.Repositories;
 using CrossOutCommunity.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,7 +27,9 @@ namespace CrossOutCommunity
             services.AddDbContext<CCDbContext>(options =>
     options.UseSqlServer(Configuration.GetConnectionString("CCDbContext")));
             services.AddMvc();
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IMessageRepository, MessageRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
