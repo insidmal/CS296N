@@ -9,7 +9,7 @@ namespace CrossOutCommunity.Models
     public class AccountRole
     {
         public IdentityRole Role { get; set; }
-        public IEnumerable<User> Members { get; set; }
-        public IEnumerable<User> NonMembers { get; set; }
+        public IEnumerable<Account> Members { get; set; }
+        public IEnumerable<Account> NonMembers { get; set; }
     }
 }
