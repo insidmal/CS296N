@@ -9,6 +9,10 @@ namespace BookInfo.Repositories
     public class UserRepository : IUserRepository
     {
         private CCDbContext context;
+        private List<Message> messages = new List<Message>();
+        public List<Message> Messages { get { return messages; } }
+
+
 
         public UserRepository(CCDbContext ctx)
         {
@@ -17,7 +21,7 @@ namespace BookInfo.Repositories
 
         public IEnumerable<User> GetAllUsers()
         {
-            return context.Users.ToList<User>();
+            return context.Users.Include(m => m.Messages).ToList().Reverse<User>().ToList();
         }
 
         public User GetUserByName(string user)
@@ -28,7 +32,11 @@ namespace BookInfo.Repositories
   
         public User AddUser(User user)
         {
+
             context.Users.Add(user);
+            context.SaveChanges();
+
+
             return user;
         }
 
