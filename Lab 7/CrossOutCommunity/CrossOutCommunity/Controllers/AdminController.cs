@@ -107,16 +107,21 @@ namespace CrossOutCommunity.Controllers
 
 
 
-        public async Task<IActionResult> EditRole(string id)
+        public async Task<IActionResult> RoleEdit(string id)
         {
             IdentityRole role = await roleManager.FindByIdAsync(id);
             List<Account> members = new List<Account>();
             List<Account> nonMembers = new List<Account>();
             foreach (Account acct in userManager.Users)
             {
-                var list = await userManager.IsInRoleAsync(acct, role.Name)
-                ? members : nonMembers;
-                list.Add(acct);
+                if(await userManager.IsInRoleAsync(acct,role.Name))
+                {
+                    members.Add(acct);
+                }
+                else nonMembers.Add(acct);
+                //var list = await userManager.IsInRoleAsync(acct, role.Name)
+                //? members : nonMembers;
+                //list.Add(acct);
             }
             return View(new AccountRole
             {
@@ -127,7 +132,7 @@ namespace CrossOutCommunity.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditRole(Role model)
+        public async Task<IActionResult> RoleEdit(Role model)
         {
             IdentityResult result;
             if (ModelState.IsValid)
@@ -137,8 +142,7 @@ namespace CrossOutCommunity.Controllers
                     Account acct = await userManager.FindByIdAsync(userId);
                     if (acct != null)
                     {
-                        result = await userManager.AddToRoleAsync(acct,
-                        model.RoleName);
+                        result = await userManager.AddToRoleAsync(acct, model.RoleName);
                         if (!result.Succeeded)
                         {
                             AddErrorsFromResult(result);
@@ -151,8 +155,7 @@ namespace CrossOutCommunity.Controllers
                     Account acct = await userManager.FindByIdAsync(userId);
                     if (acct != null)
                     {
-                        result = await userManager.RemoveFromRoleAsync(acct,
-                        model.RoleName);
+                        result = await userManager.RemoveFromRoleAsync(acct, model.RoleName);
                         if (!result.Succeeded)
                         {
                             AddErrorsFromResult(result);
@@ -167,7 +170,7 @@ namespace CrossOutCommunity.Controllers
             }
             else
             {
-                return await EditRole(model.RoleId);
+                return await RoleEdit(model.RoleId);
             }
         }
 

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CrossOutCommunity.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 
 namespace CrossOutCommunity
 {
@@ -31,32 +32,59 @@ namespace CrossOutCommunity
             services.AddMvc();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IMessageRepository, MessageRepository>();
-            services.AddIdentity<Account, IdentityRole>()
-     .AddEntityFrameworkStores<CCDbContext>()
-     .AddDefaultTokenProviders();
+
+
+            services.AddIdentity<Account, IdentityRole>(opts =>
+            {
+                opts.User.RequireUniqueEmail = true;
+                //opts.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyz";
+                opts.Password.RequiredLength = 6;
+                opts.Password.RequireNonAlphanumeric = false;
+                opts.Password.RequireLowercase = false;
+                opts.Password.RequireUppercase = false;
+                opts.Password.RequireDigit = false;
+            }).AddEntityFrameworkStores<CCDbContext>()
+                          .AddDefaultTokenProviders();
         }
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddConsole();
+
             if (env.IsDevelopment())
             {
-                app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
-
+            app.UseAuthentication();   // Must precede app.UseMvc!!!
+            app.UseMvcWithDefaultRoute();
             app.UseStaticFiles();
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
         }
+
+
+        //    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        //{
+        //    if (env.IsDevelopment())
+        //    {
+        //        app.UseBrowserLink();
+        //        app.UseDeveloperExceptionPage();
+        //    }
+        //    else
+        //    {
+        //        app.UseExceptionHandler("/Home/Error");
+        //    }
+
+        //    app.UseStaticFiles();
+
+        //    app.UseMvc(routes =>
+        //    {
+        //        routes.MapRoute(
+        //            name: "default",
+        //            template: "{controller=Home}/{action=Index}/{id?}");
+        //    });
+        //}
     }
 }

@@ -22,8 +22,8 @@
                 <td>@role.Name</td>
                 <td identity-role="@role.Id"></td>
                 <td>
-                    <form asp-action="DeleteRole" asp-route-id="@role.Id" method="post">
-                        <a class="btn btn-sm btn-primary" asp-action="EditRole" asp-route-id="@role.Id">Edit</a>
+                    <form asp-action="RoleDelete" asp-route-id="@role.Id" method="post">
+                        <a class="btn btn-sm btn-primary" asp-action="RoleEdit" asp-route-id="@role.Id">Edit</a>
                         <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                     </form>
                 </td>
@@ -31,7 +31,7 @@
         }
     }
 </table>
-<a class="btn btn-primary" asp-action="CreateRole">Create</a><br>
+<a class="btn btn-primary" asp-action="RoleCreate">Create</a><br>
 <br>
 <a asp-action="Index">Admin Page</a><br>
 <br>

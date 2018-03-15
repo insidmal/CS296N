@@ -21,19 +21,19 @@ namespace BookInfo.Repositories
 
         public IEnumerable<User> GetAllUsers()
         {
-            return context.Users.Include(m => m.Messages).ToList().Reverse<User>().ToList();
+            return context.User.Include(m => m.Messages).ToList().Reverse<User>().ToList();
         }
 
         public User GetUserByName(string user)
         {
-            return context.Users.First(b => b.Name == user);
+            return context.User.First(b => b.Name == user);
         }
 
   
         public User AddUser(User user)
         {
 
-            context.Users.Add(user);
+            context.User.Add(user);
             context.SaveChanges();
 
 
@@ -42,7 +42,7 @@ namespace BookInfo.Repositories
 
         public int Update(User user)
         {
-            context.Users.Update(user);
+            context.User.Update(user);
             return context.SaveChanges();
         }
     }
