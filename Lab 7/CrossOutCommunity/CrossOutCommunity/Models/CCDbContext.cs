@@ -12,16 +12,7 @@ namespace CrossOutCommunity.Repositories
         public DbSet<User> User { get; set; }
         public DbSet<Message> Messages { get; set; }
 
-        public DbSet<Account> Accounts { get; set; }
+         public DbSet<Account> Accounts { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Ignore<IdentityUserLogin<string>>();
-            modelBuilder.Ignore<IdentityUserRole<string>>();
-            modelBuilder.Ignore<IdentityUserClaim<string>>();
-            modelBuilder.Ignore<IdentityUserToken<string>>();
-            modelBuilder.Ignore<IdentityUser<string>>();
-        }
     }
 }
