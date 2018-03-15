@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using CrossOutCommunity.Models;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CrossOutCommunity.Controllers
 {
@@ -27,6 +28,7 @@ namespace CrossOutCommunity.Controllers
         public ViewResult AccountView() => View(userManager.Users);
         public ViewResult AccountCreate() => View();
         public ViewResult RoleView() => View(roleManager.Roles);
+        [Authorize(Roles = "admin")]
         public IActionResult RoleCreate() => View();
         #endregion
 
@@ -66,7 +68,7 @@ namespace CrossOutCommunity.Controllers
 
 
 
-
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<IActionResult> AccountDelete(string id)
         {
@@ -96,6 +98,7 @@ namespace CrossOutCommunity.Controllers
 
         #region rolePosts
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<IActionResult> RoleCreate([Required]string name)
         {
