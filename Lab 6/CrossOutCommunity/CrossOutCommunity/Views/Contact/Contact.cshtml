@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Messages";
+}
+@model Contact
+<h2>@ViewData["Title"]</h2>
+
+
+@if(Model.Name != null)
+{
+    <p>
+<label asp-for="Name"></label> @Model.Name<br />
+                                          <label asp-for="Email"></label> @Model.Email<br />
+                                                                                      <label asp-for="Message"></label> @Model.Message</p>
+
+}
+
+    <form asp - action="Contact" method="post">
+
+
+
+
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+
+
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+
+
+        <label asp-for="Message"></label>
+        <textarea asp-for="Message" class="form-control"></textarea>
+
+        <br />
+        <button type="submit" class=" btn btn-success">Post Message</button>&nbsp;&nbsp;&nbsp;
+        <a href="/Contact/ViewContact" class="btn btn-info" role="button">View Contacts</a>&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-danger" onclick="window.history.go(-1); return false;">Back</button>
+
+    </form>
+    <p>
+        
+        
+        
+    </p>
