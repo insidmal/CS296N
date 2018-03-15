@@ -1,0 +1,21 @@
+﻿@model List<User>;
+@{
+    ViewData["Title"] = "View Contacts";
+}
+
+<h2>View Contacts</h2>
+ @{
+     foreach(User u in Model)
+     {
+<p>
+    <strong>Name:</strong> @u.Name<br />
+    <strong>Email Address:</strong>@u.EmailAddress<br />
+     @foreach (Message m in u.Messages)
+     {
+    <strong>Message:</strong> @m.ContactMessage<br />
+     }
+</p>
+
+
+     }
+ }
