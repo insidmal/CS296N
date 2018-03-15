@@ -1,10 +1,17 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Admin";
 }
 
-<h2>Index</h2>
-
-
-<a asp-action="AccountView">Show All Accounts</a><br />
-<a asp-action="AccountCreate">Create an Account</a>
+<h2>Admin</h2>
+<p>
+    <strong>Accounts</strong><br />
+    <a asp-action="AccountView">Show All Accounts</a><br />
+    <a asp-action="AccountCreate">Create an Account</a><br />
+</p>
+<p>
+    <strong>Roles</strong><br />
+    <a asp-action="RoleView">Assign Roles</a><br />
+    <a asp-action="RoleView">Show All Roles</a><br />
+    <a asp-action="RoleCreate">Create a Role</a><br />
+</p>

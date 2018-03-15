@@ -1,10 +1,11 @@
 ﻿using CrossOutCommunity.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CrossOutCommunity.Repositories
 {
-    public class CCDbContext : DbContext
+    public class CCDbContext : IdentityDbContext
     {
         public CCDbContext(DbContextOptions<CCDbContext> options)
         : base(options) { }
