@@ -142,10 +142,22 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BandController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MediaController.cs" />
+    <Compile Include="Controllers\ShowsController.cs" />
+    <Compile Include="Controllers\VenuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\Content.cs" />
+    <Compile Include="Models\ContentHistory.cs" />
+    <Compile Include="Models\MediaController.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -182,13 +194,43 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Booking.cshtml" />
+    <Content Include="Views\Shows\Index.cshtml" />
+    <Content Include="Views\Shows\View.cshtml" />
+    <Content Include="Views\Venues\Index.cshtml" />
+    <Content Include="Views\Venues\View.cshtml" />
+    <Content Include="Views\Media\Videos.cshtml" />
+    <Content Include="Views\Media\Video.cshtml" />
+    <Content Include="Views\Media\Songs.cshtml" />
+    <Content Include="Views\Media\Song.cshtml" />
+    <Content Include="Views\Media\Pictures.cshtml" />
+    <Content Include="Views\Media\Picture.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\AccountCreate.cshtml" />
+    <Content Include="Views\Admin\AccountEdit.cshtml" />
+    <Content Include="Views\Admin\RoleCreate.cshtml" />
+    <Content Include="Views\Admin\RoleEdit.cshtml" />
+    <Content Include="Views\Admin\CommentView.cshtml" />
+    <Content Include="Views\Admin\CommentEdit.cshtml" />
+    <Content Include="Views\Admin\CommentDelete.cshtml" />
+    <Content Include="Views\Band\ContentCreate.cshtml" />
+    <Content Include="Views\Band\ContentEdit.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\CommentAdd.cshtml" />
+    <Content Include="Views\Account\CommentEdit.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Account\Create.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Logout.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Blog\Post.cshtml" />
+    <Content Include="Views\Band\MediaAdd.cshtml" />
+    <Content Include="Views\Band\MediaEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
