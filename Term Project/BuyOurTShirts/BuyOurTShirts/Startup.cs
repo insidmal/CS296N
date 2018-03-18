@@ -27,7 +27,7 @@ namespace BuyOurTShirts
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BotsDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("BotsDbContext")));
+            options.UseSqlServer(Configuration.GetConnectionString("BotsContext")));
             services.AddMvc();
             services.AddTransient<IBlogRepository, BlogRepo>();
             services.AddTransient<ICommentRepository, CommentRepo>();

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BuyOurTShirts</title>
+    <title>@ViewData["Title"] - Buy Our T-Shirts Eugene Oregon Rock</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -18,7 +18,7 @@
 </head>
 <body>
 <!-- navigation start-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <a class="navbar-brand" href="#">
             <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
             Buy Our T-Shirts
@@ -116,10 +116,12 @@
 
 
     <div class="container body-content">
-        @RenderBody()
+        <p>
+            @RenderBody()
+        </p>
         <hr />
         <footer>
-            <p>&copy; 2018 - BuyOurTShirts</p>
+            <p>&copy; 2018 - Buy Our T-Shirts, Conquest Marketing</p>
         </footer>
     </div>
 
