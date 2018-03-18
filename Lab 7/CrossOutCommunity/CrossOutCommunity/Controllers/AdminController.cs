@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using CrossOutCommunity.Models;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CrossOutCommunity.Controllers
 {
@@ -21,13 +22,18 @@ namespace CrossOutCommunity.Controllers
             roleManager = rm;
         }
 
-        //GETS
+        #region allGets
 
         public IActionResult Index() => View();
         public ViewResult AccountView() => View(userManager.Users);
         public ViewResult AccountCreate() => View();
         public ViewResult RoleView() => View(roleManager.Roles);
+        [Authorize(Roles = "admin")]
         public IActionResult RoleCreate() => View();
+        #endregion
+
+
+        #region accountPosts
 
         //POSTS
         [HttpPost]
@@ -47,7 +53,7 @@ namespace CrossOutCommunity.Controllers
                     = await userManager.CreateAsync(acct, model.Password);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("AccountView");
                 }
                 else
                 {
@@ -62,6 +68,37 @@ namespace CrossOutCommunity.Controllers
 
 
 
+        [Authorize(Roles = "admin")]
+        [HttpPost]
+        public async Task<IActionResult> AccountDelete(string id)
+        {
+            Account acct = await userManager.FindByIdAsync(id);
+            if (acct != null)
+            {
+                IdentityResult result = await userManager.DeleteAsync(acct);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("AccountView");
+                }
+                else
+                {
+                    AddErrorsFromResult(result);
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "No Account found");
+            }
+            return View("Index", userManager.Users);
+        }
+
+
+        #endregion
+
+
+        #region rolePosts
+
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<IActionResult> RoleCreate([Required]string name)
         {
@@ -173,7 +210,7 @@ namespace CrossOutCommunity.Controllers
                 return await RoleEdit(model.RoleId);
             }
         }
-
+        #endregion
 
         private void AddErrorsFromResult(IdentityResult result)
         {
