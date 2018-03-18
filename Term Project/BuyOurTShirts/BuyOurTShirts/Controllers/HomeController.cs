@@ -16,7 +16,7 @@ namespace BOTSwebsite.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Booking()
         {
             ViewBag.Message = "Your contact page.";
 

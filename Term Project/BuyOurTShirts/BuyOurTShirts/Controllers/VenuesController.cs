@@ -5,9 +5,9 @@ namespace BOTSwebsite.Controllers
     public class VenuesController : Controller
     {
         // GET: Venues
-        public ActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Venus() => View();
+        public IActionResult Venues() => View();
+
+
     }
 }
