@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using BOTSwebsite.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using BOTSwebsite.Repositories;
 
 namespace BOTSwebsite
 {
@@ -29,8 +30,12 @@ namespace BOTSwebsite
             services.AddDbContext<BotsDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("BotsDbContext")));
             services.AddMvc();
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IMessageRepository, MessageRepository>();
+            services.AddTransient<IBlogRepository, BlogRepo>();
+            services.AddTransient<ICommentRepository, CommentRepo>();
+            services.AddTransient<IMediaRepository, MediaRepo>();
+            services.AddTransient<IShowRepository, ShowRepo>();
+            services.AddTransient<IVenueRepository,VenueRepo>();
+
 
 
             services.AddIdentity<Account, IdentityRole>(opts =>
