@@ -7,10 +7,9 @@ namespace BOTSwebsite.Models
 {
     public class Show
     {
-        public int Id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
-        public int venueId { get; set; }
+        public Venue venue { get; set; }
         public DateTime date { get; set; }
         public float cost { get; set; }
         public int minAge { get; set; }

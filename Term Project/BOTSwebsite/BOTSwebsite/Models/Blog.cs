@@ -7,9 +7,8 @@ namespace BOTSwebsite.Models
 {
     public class Blog
     {
-        public int id { get; set; }
-        public int authorId { get; set; }
-        public int mediaId { get; set; }
+        public Account account { get; set; }
+        public Media media { get; set; }
         public string title { get; set; }
         public string summary { get; set; }
         public string content { get; set; }
