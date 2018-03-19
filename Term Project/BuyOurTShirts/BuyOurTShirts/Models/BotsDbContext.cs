@@ -13,7 +13,7 @@ namespace BuyOurTShirts.Models
         public DbSet<Venue> Venue { get; set; }
         public DbSet<Media> Media { get; set; }
         public DbSet<Blog> Blog { get; set; }
-        public DbSet<Comment> Comment { get; set; }
+       
 
     }
 }

@@ -1,11 +1,16 @@
-﻿using System;
+﻿using BuyOurTShirts.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace BuyOurTShirts.Repositories
 {
-    public class IMediaRepository
+    public interface IMediaRepository
     {
+        int Add(Media media);
+        int Edit(Media media);
+        int Delete(int id);
+
+        List<Media> GetAllMedia();
+        List<Media> GetAllMediaByType(MediaType mt);
+        Media GetMediaById(int id);
     }
 }

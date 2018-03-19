@@ -1,5 +1,49 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Show
 @{
+    ViewBag.Title = "Edit Show";
 }
+
+<h2>Edit Show</h2>
+
+<span style="color:red">@ViewData["Message"]</span>
+
+<div asp-validation-summary=" All"></div>
+
+<form asp-action="ShowEdit" method="post">
+    <p>
+        <label asp-for="name">Show Name</label>
+        <input asp-for="name" />
+    </p>
+    <p>
+        <label asp-for="description">Show Description</label>
+        <input asp-for="description" />
+    </p>
+    <p>
+        <label asp-for="date">Date</label>
+        <input asp-for="date" />
+    </p>
+    <p>
+        <label asp-for="venue">Venue</label>
+        <select asp-for="VenueID" class="form-control" asp-items="@(new SelectList(@ViewBag.ListOfVenues,"ID","name"))"></select>
+    </p>
+
+    <p>
+        <label asp-for="cost">Cost</label>
+        <input asp-for="cost" />
+    </p>
+    <p>
+        <label asp-for="minAge">Minimum Age</label>
+        <input asp-for="minAge" />
+    </p>
+    <p>
+        <label asp-for="type"></label>
+
+        <select asp-for="type" class="form-control" asp-items="@(new SelectList(@ViewBag.ListOfTypes))"></select>
+
+
+<p>
+        <button type="submit">Update</button>
+    </p>
+
+    <button asp-controlle="Band" asp-action="ShowList">Cancel</button><br />
+</form>

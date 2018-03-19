@@ -30,20 +30,11 @@ namespace BuyOurTShirts.Repositories
 
         public int Edit(Venue venue)
         {
-            var newVen = GetVenueById(venue.ID);
-            newVen.name = venue.name ?? newVen.name;
-            newVen.address = venue.address ?? newVen.address;
-            newVen.city = venue.city ?? newVen.city;
-            newVen.state = venue.state ?? newVen.state;
-            newVen.description = venue.description ?? newVen.description;
-            newVen.wazeNav = venue.wazeNav ?? newVen.wazeNav;
-            newVen.googleNav = venue.googleNav ?? newVen.googleNav;
-
-            context.Venue.Update(newVen);
+            context.Venue.Update(venue);
             return context.SaveChanges();
         }
 
-        public List<Venue> GetAllVenues() => context.Venue.ToList<Venue>();
+        public List<Venue> GetAllVenues() => context.Venue.ToList();
         
 
         public Venue GetVenueById(int id) => context.Venue.First(a => a.ID == id);

@@ -10,6 +10,7 @@ namespace BuyOurTShirts.Models
         public int ID { get; set; }
         public string name { get; set; }
         public string description { get; set; }
+        public int VenueID { get; set; }
         public Venue venue { get; set; }
         public DateTime date { get; set; }
         public float cost { get; set; }
