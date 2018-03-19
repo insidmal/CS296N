@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using BuyOurTShirts.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using BuyOurTShirts.Controllers;
 
 namespace BuyOurTShirts.Repositories
 {
@@ -17,7 +19,7 @@ namespace BuyOurTShirts.Repositories
             context = ctx;
         }
 
-        public int Add(Media media)
+        public async Task<int> Add(Media media)
         {
             context.Media.Add(media);
             return context.SaveChanges();
@@ -36,31 +38,11 @@ namespace BuyOurTShirts.Repositories
             return context.SaveChanges();
         }
 
-        public List<Media> GetAllMedia()
-        {
-            List<Media> meds = context.Media.ToList();
-            foreach (Media me in meds) me.Acct = GetMediaAccount(me.AccountId);
-            return meds;
-        }
+        public List<Media> GetAllMedia() => context.Media.ToList();
+        public List<Media> GetAllMediaByType(MediaType mt) => context.Media.Include(a=>a.mediaType==mt).ToList();
 
-        public List<Media> GetAllMediaByType(MediaType mt)
-        {
-            List<Media> meds = context.Media.Include(a=>a.mediaType==mt).ToList();
-            foreach (Media me in meds) me.Acct = GetMediaAccount(me.AccountId);
-            return meds;
-        }
+        public Media GetMediaById(int id) =>context.Media.First(a => a.ID == id);
+        public List<MediaType> GetAllMediaTypes() => new List<MediaType> { MediaType.Audio, MediaType.Image, MediaType.Video };
 
-        public Media GetMediaById(int id)
-        {
-            var meds = context.Media.First(a => a.ID == id);
-            meds.Acct = GetMediaAccount(meds.AccountId);
-            return meds;
-
-        }
-
-        private Account GetMediaAccount(string i)
-        {
-            return context.Account.First(a => a.Id == i);
-        }
     }
 }

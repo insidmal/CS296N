@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace BOTSwebsite.Controllers
+namespace BuyOurTShirts.Controllers
 {
 
     public class AccountController : Controller
@@ -171,7 +171,7 @@ namespace BOTSwebsite.Controllers
         }
 
         //account methods 
-        private Task<Account> GetCurrentUserAsync() => userManager.GetUserAsync(HttpContext.User);
+        public Task<Account> GetCurrentUserAsync() => userManager.GetUserAsync(HttpContext.User);
 
         private void AddErrorsFromResult(IdentityResult result)
         {

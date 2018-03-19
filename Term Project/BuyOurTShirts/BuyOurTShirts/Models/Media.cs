@@ -11,8 +11,6 @@ namespace BuyOurTShirts.Models
         public string resourceLink { get; set; }
         public string name { get; set; }
         public string description { get; set; }
-        public string AccountId { get; set; }
-        public Account Acct {get; set;}
         public MediaType mediaType { get; set; }
     }
 

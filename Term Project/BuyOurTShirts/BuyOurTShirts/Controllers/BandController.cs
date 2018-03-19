@@ -1,10 +1,11 @@
 ﻿using BuyOurTShirts.Models;
 using BuyOurTShirts.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BOTSwebsite.Controllers
+namespace BuyOurTShirts.Controllers
 {
     public class BandController : Controller
     {
@@ -13,23 +14,34 @@ namespace BOTSwebsite.Controllers
         private IVenueRepository venueRepo;
         private IShowRepository showRepo;
         private IMediaRepository mediaRepo;
+
+ 
         public BandController(IVenueRepository vR, IShowRepository sR, IMediaRepository mR) {
             venueRepo = vR;
             showRepo = sR;
             mediaRepo = mR;
 
-        } 
+        }
 
         #region Media
-        public IActionResult MediaCreate() => View();
+        public IActionResult MediaCreate()
+        {
+            ViewBag.ListOfTypes = mediaRepo.GetAllMediaTypes();
+            return View();
+        }
         public IActionResult MediaList() => View(mediaRepo.GetAllMedia());
-        public IActionResult MediaEdit(int id) => View(mediaRepo.GetMediaById(id));
+        public IActionResult MediaEdit(int id)
+        {
+            ViewBag.ListOfTypes = mediaRepo.GetAllMediaTypes();
+            return View(mediaRepo.GetMediaById(id));
+        }
 
         [HttpPost]
         public IActionResult MediaCreate(Media media)
         {
             mediaRepo.Add(media);
             ViewData["Message"] = "Media Added!";
+            ViewBag.ListOfTypes = mediaRepo.GetAllMediaTypes();
             return View("MediaList", mediaRepo.GetAllMedia());
         }
 
@@ -38,6 +50,7 @@ namespace BOTSwebsite.Controllers
         {
             mediaRepo.Edit(media);
             ViewData["Message"] = "Media Updated!";
+            ViewBag.ListOfTypes = mediaRepo.GetAllMediaTypes();
             return View("MediaEdit", media);
         }
 
@@ -133,6 +146,8 @@ namespace BOTSwebsite.Controllers
         }
 
         #endregion
+
+
 
     }
 }

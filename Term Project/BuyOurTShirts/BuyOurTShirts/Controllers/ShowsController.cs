@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace BOTSwebsite.Controllers
+namespace BuyOurTShirts.Controllers
 {
     public class ShowsController : Controller
     {
