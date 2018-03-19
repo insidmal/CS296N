@@ -21,22 +21,25 @@ namespace BOTSwebsite.Controllers
         #endregion
 
         #region Venue
-
+        public IActionResult VenueList() => View(venueRepo.GetAllVenues());
+        
         public IActionResult VenueEdit(int id) => View(venueRepo.GetVenueById(id));
         [HttpGet]
         public IActionResult VenueCreate() => View();
         [HttpPost]
         public IActionResult VenueCreate(Venue venue)
         {
-            venueRepo.Add(venue);           
-            return View("VenueList");
+            venueRepo.Add(venue);
+            ViewData["Message"] = "Venue Added!";
+            return View("VenueList", venueRepo.GetAllVenues());
         }
 
         [HttpPost]
         public IActionResult VenueEdit(Venue venue)
         {
             venueRepo.Edit(venue);
-            return View("VenueEdit",venue.ID);
+            ViewData["Message"] = "Venue Updated!";
+            return View("VenueEdit",venue);
         }
 
 
@@ -44,7 +47,8 @@ namespace BOTSwebsite.Controllers
         public IActionResult VenueDelete(Venue venue)
         {
             venueRepo.Delete(venue.ID);
-            return View("VenueList");
+            ViewData["Message"] = "Venue Deleted";
+            return View("VenueList", venueRepo.GetAllVenues());
         }
 
         #endregion

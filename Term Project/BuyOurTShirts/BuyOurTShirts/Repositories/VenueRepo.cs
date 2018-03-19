@@ -24,6 +24,7 @@ namespace BuyOurTShirts.Repositories
         public int Delete(int id)
         {
             var venue = context.Venue.First(a => a.ID == id);
+            context.Venue.Remove(venue);
             return context.SaveChanges();
         }
 

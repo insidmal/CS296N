@@ -1,5 +1,49 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Venue
 @{
+    ViewBag.Title = "Edit Venue";
 }
+
+<h2>Edit @Model.name</h2>
+
+<span style="color:red">@ViewData["Message"]</span>
+
+<div asp-validation-summary=" All"></div>
+
+<form asp-action="VenueEdit" method="post">
+    <p>
+        <label asp-for="name">Venue Name</label>
+        <input asp-for="name" />
+    </p>
+
+    <p>
+        <label asp-for="address">Street Address</label>
+        <input asp-for="address" />
+    </p>
+    <p>
+        <label asp-for="city">City</label>
+        <input asp-for="city" />
+    </p>
+    <p>
+        <label asp-for="state">State</label>
+        <input asp-for="state" />
+    </p>
+    <p>
+        <label asp-for="description">Description</label>
+        <input asp-for="description" />
+    </p>
+    <p>
+        <label asp-for="wazeNav">Waze Nav Link</label>
+        <input asp-for="wazeNav" />
+    </p>
+    <p>
+        <label asp-for="googleNav">Google Maps Link</label>
+        <input asp-for="googleNav" />
+    </p>
+
+
+    <p>
+        <button type="submit">Update</button>
+    </p>
+
+    <button asp-controlle="Band" asp-action="VenueList">Cancel</button><br />
+</form>
