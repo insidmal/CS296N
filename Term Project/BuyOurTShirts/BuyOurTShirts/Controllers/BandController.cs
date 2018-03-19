@@ -21,15 +21,32 @@ namespace BOTSwebsite.Controllers
         #endregion
 
         #region Venue
-        [HttpPost]
-        public IActionResult Create(Venue venue)
-        {
-   
-         
-            
 
+        public IActionResult VenueEdit(int id) => View(venueRepo.GetVenueById(id));
+        [HttpGet]
+        public IActionResult VenueCreate() => View();
+        [HttpPost]
+        public IActionResult VenueCreate(Venue venue)
+        {
+            venueRepo.Add(venue);           
             return View("VenueList");
         }
+
+        [HttpPost]
+        public IActionResult VenueEdit(Venue venue)
+        {
+            venueRepo.Edit(venue);
+            return View("VenueEdit",venue.ID);
+        }
+
+
+        [HttpPost]
+        public IActionResult VenueDelete(Venue venue)
+        {
+            venueRepo.Delete(venue.ID);
+            return View("VenueList");
+        }
+
         #endregion
 
     }

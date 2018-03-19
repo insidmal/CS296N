@@ -2,10 +2,10 @@
 
 namespace BOTSwebsite.Controllers
 {
-    public class VenuesController : Controller
+    public class VenueController : Controller
     {
         // GET: Venues
-        public IActionResult Venus() => View();
+        public IActionResult Venue() => View();
         public IActionResult Venues() => View();
 
 
