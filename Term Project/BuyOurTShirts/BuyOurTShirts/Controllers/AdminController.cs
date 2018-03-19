@@ -1,5 +1,4 @@
-﻿using BOTSwebsite.Models;
-using BuyOurTShirts.Models;
+﻿using BuyOurTShirts.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -25,12 +24,37 @@ namespace BOTSwebsite.Controllers
 
         public IActionResult Index() => View();
         public ViewResult AccountView() => View(userManager.Users);
+       
+
         public ViewResult AccountCreate() => View();
-        public ViewResult RoleView() => View(roleManager.Roles);
-        [Authorize(Roles = "admin")]
+        public IActionResult RoleView() => View(roleManager.Roles);
+        //[Authorize(Roles = "admin")]
         public IActionResult RoleCreate() => View();
         #endregion
 
+        public async Task<IActionResult> AccountEdit(string id) => View(await userManager.FindByIdAsync(id));
+        
+
+        public async Task<IActionResult> RoleEdit(string id)
+        {
+            IdentityRole role = await roleManager.FindByIdAsync(id);
+            List<Account> members = new List<Account>();
+            List<Account> nonMembers = new List<Account>();
+            foreach (Account acct in userManager.Users)
+            {
+                if (await userManager.IsInRoleAsync(acct, role.Name))
+                {
+                    members.Add(acct);
+                }
+                else nonMembers.Add(acct);
+            }
+            return View(new AccountRole
+            {
+                Role = role,
+                Members = members,
+                NonMembers = nonMembers
+            });
+        }
 
         #region accountPosts
 
@@ -52,7 +76,9 @@ namespace BOTSwebsite.Controllers
                     = await userManager.CreateAsync(acct, model.Password);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("AccountView");
+                    ViewData["Message"] = "Account Created!";
+
+                    return View("AccountView", userManager.Users);
                 }
                 else
                 {
@@ -77,7 +103,9 @@ namespace BOTSwebsite.Controllers
                 IdentityResult result = await userManager.DeleteAsync(acct);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("AccountView");
+                    ViewData["Message"] = "Account Deleted";
+
+                    return View("AccountView", userManager.Users);
                 }
                 else
                 {
@@ -88,16 +116,36 @@ namespace BOTSwebsite.Controllers
             {
                 ModelState.AddModelError("", "No Account found");
             }
-            return View("Index", userManager.Users);
+            return RedirectToAction("AccountView", userManager.Users);
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> AccountEdit(Account acct)
+        {
+
+            Account updAcct = await userManager.FindByIdAsync(acct.Id);
+
+            updAcct.FirstName = acct.FirstName;
+            updAcct.LastName = acct.LastName;
+            updAcct.Email = acct.Email;
+            updAcct.Bio = acct.Bio;
+            updAcct.UserName = acct.UserName;
+            if (acct.Password != null) updAcct.Password = acct.Password;
+
+            await userManager.UpdateAsync(updAcct);
+
+            ViewData["Message"] = "Account Updated!";
+            return View("AccountEdit", updAcct);
+
+        }
 
         #endregion
 
 
         #region rolePosts
 
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<IActionResult> RoleCreate([Required]string name)
         {
@@ -107,7 +155,7 @@ namespace BOTSwebsite.Controllers
                     = await roleManager.CreateAsync(new IdentityRole(name));
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("RoleView");
                 }
                 else
                 {
@@ -127,7 +175,7 @@ namespace BOTSwebsite.Controllers
                 IdentityResult result = await roleManager.DeleteAsync(role);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("RoleView");
                 }
                 else
                 {
@@ -142,30 +190,6 @@ namespace BOTSwebsite.Controllers
         }
 
 
-
-        public async Task<IActionResult> RoleEdit(string id)
-        {
-            IdentityRole role = await roleManager.FindByIdAsync(id);
-            List<Account> members = new List<Account>();
-            List<Account> nonMembers = new List<Account>();
-            foreach (Account acct in userManager.Users)
-            {
-                if (await userManager.IsInRoleAsync(acct, role.Name))
-                {
-                    members.Add(acct);
-                }
-                else nonMembers.Add(acct);
-                //var list = await userManager.IsInRoleAsync(acct, role.Name)
-                //? members : nonMembers;
-                //list.Add(acct);
-            }
-            return View(new AccountRole
-            {
-                Role = role,
-                Members = members,
-                NonMembers = nonMembers
-            });
-        }
 
         [HttpPost]
         public async Task<IActionResult> RoleEdit(Role model)
@@ -200,14 +224,9 @@ namespace BOTSwebsite.Controllers
                 }
             }
 
-            if (ModelState.IsValid)
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            else
-            {
+      
                 return await RoleEdit(model.RoleId);
-            }
+     
         }
         #endregion
 

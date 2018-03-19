@@ -14,5 +14,7 @@ namespace BuyOurTShirts.Models
         [Required]
         [UIHint("password")]
         public string Password { get; set; }
+
+        public string returnUrl { get; set; }
     }
 }

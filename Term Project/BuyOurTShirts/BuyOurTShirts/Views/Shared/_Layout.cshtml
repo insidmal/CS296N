@@ -66,11 +66,11 @@
                         Account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="AccountAdd">Create Account</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Create">Create Account</a>
                         <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
                         <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Index">My Account</a>
-                        <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="AccountEdit">Edit Account</a>
-                        <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Login">Logout</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Edit">Edit Account</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
 
                     </div>
                 </li>
@@ -82,10 +82,16 @@
                         Band
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" asp-area="" asp-controller="Band" asp-action="ContentAdd">Edit Content</a>
-                        <a class="dropdown-item" asp-area="" asp-controller="Band" asp-action="ContentEdit">Edit Content</a>
                         <a class="dropdown-item" asp-area="" asp-controller="Band" asp-action="MediaAdd">Add Media</a>
-                        <a class="dropdown-item" asp-area="" asp-controller="Band" asp-action="MediaEdit">Edit Media</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="Band" asp-action="MediaList">Edit Media</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="" asp-action="">&nbsp;</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="Band" asp-action="ShowAdd">Add Shows</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="Band" asp-action="ShowList">Edit Shows</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="" asp-action="">&nbsp;</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="Band" asp-action="VenueAdd">Add Venue</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="Band" asp-action="VenueList">Edit Venues</a>
+
+
                     </div>
                 </li>
 
@@ -96,10 +102,8 @@
                         Admin
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="AccountCreate">Create Account</a>
-                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="AccountEdit">Edit Account</a>
-                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="RoleCreate">Create Role</a>
-                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="RoleEdit">Edit Role</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="AccountView">View Accounts</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="RoleView">View Roles</a>
                         <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="CommentView">Moderate Comments</a>
                     </div>
                 </li>

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BOTSwebsite.Models
+namespace BuyOurTShirts.Models
 {
     public class Comment
     {
-         public int parentId { get; set; }
+        public int ID { get; set; }
+        public int parentId { get; set; }
         public ParentType parentType { get; set; }
         public Account account { get; set; }
         public DateTime date { get; set; }

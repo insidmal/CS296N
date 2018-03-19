@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BOTSwebsite.Repositories
+namespace BuyOurTShirts.Repositories
 {
     public class IMediaRepository
     {

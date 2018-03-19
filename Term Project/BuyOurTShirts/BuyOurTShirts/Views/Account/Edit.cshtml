@@ -1,7 +1,48 @@
-﻿
+﻿@model Account
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Your Account";
 }
 
-<h2>Edit</h2>
+<h2>Edit Your Account</h2>
+<span style="color:red">@ViewData["Message"]</span>
+
+<div asp-validation-summary=" All"></div>
+
+<form asp-action="Edit" method="post">
+    <p>
+        <label asp-for="FirstName">First Name</label>
+        <input asp-for="FirstName" />
+    </p>
+
+    <p>
+        <label asp-for="LastName">Last Name</label>
+        <input asp-for="LastName" />
+    </p>
+    <p>
+        <label asp-for="UserName">User Name</label>
+        <input asp-for="UserName" />
+    </p>
+    <p>
+        <label asp-for="Bio">Bio</label>
+        <input asp-for="Bio" />
+    </p>
+    <p>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" />
+    </p>
+    <p>
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" />
+    </p>
+    <p>
+        <button type="submit">Edit</button>
+    </p>
+</form>
+    <button asp-action="Index">Cancel</button><br />
+    <p />
+    <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+    
+
+</form>
 

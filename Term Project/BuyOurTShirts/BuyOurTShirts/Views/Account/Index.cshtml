@@ -1,7 +1,12 @@
-﻿
+﻿@model Account
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>@Model.UserName</h2>
+<hr />
+@Model.FirstName @Model.LastName<br />@Model.Email
+<p />
+@Model.Bio;
 
+<a asp-action="Edit">Edit Account</a>

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BOTSwebsite.Models
+namespace BuyOurTShirts.Models
 {
     public class Blog
     {
+        public int ID { get; set; }
         public Account account { get; set; }
         public Media media { get; set; }
         public string title { get; set; }

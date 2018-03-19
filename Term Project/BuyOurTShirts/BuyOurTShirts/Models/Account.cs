@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Identity;
 
-namespace BOTSwebsite.Models
+namespace BuyOurTShirts.Models
 {
     public class Account : IdentityUser
     {
@@ -9,7 +9,6 @@ namespace BOTSwebsite.Models
         public string LastName { get; set; }
         public string ImgUrl { get; set; }
         public string Bio { get; set; }
-        public string Username { get; set; }
         public string Password { get; set; }
     }
 }
