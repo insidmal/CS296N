@@ -1,7 +1,10 @@
-﻿
+﻿@model Blog
 @{
-    ViewBag.Title = "Post";
+    ViewBag.Title = Model.title + " on ";
 }
 
-<h2>Post</h2>
+<h2>@Model.title</h2>
+@Model.content
+<p />
+<a asp-action="edit" asp-route-id="@Model.ID">Edit</a>
 

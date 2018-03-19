@@ -23,7 +23,7 @@ namespace BuyOurTShirts.Repositories
 
         public int Delete(int id)
         {
-            var venue = context.Venue.First(a => a.ID == id);
+            var venue = context.Venue.FirstOrDefault(a => a.ID == id);
             context.Venue.Remove(venue);
             return context.SaveChanges();
         }
@@ -37,7 +37,7 @@ namespace BuyOurTShirts.Repositories
         public List<Venue> GetAllVenues() => context.Venue.ToList();
         
 
-        public Venue GetVenueById(int id) => context.Venue.First(a => a.ID == id);
+        public Venue GetVenueById(int id) => context.Venue.FirstOrDefault(a => a.ID == id);
         
     }
 }

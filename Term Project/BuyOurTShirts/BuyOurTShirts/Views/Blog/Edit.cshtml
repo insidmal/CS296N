@@ -1,5 +1,31 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Blog
 @{
+    ViewBag.Title = "Edit Blog Post";
 }
+
+<h2>Edit Blog Post</h2>
+
+<span style="color:red">@ViewData["Message"]</span>
+
+<div asp-validation-summary=" All"></div>
+
+<form asp-action="Edit" method="post">
+    <p>
+        <label asp-for="title">Title</label>
+        <input asp-for="title" />
+    </p>
+
+    <p>
+        <label asp-for="summary">Summary</label>
+        <input asp-for="summary" />
+    </p>
+    <p>
+        <label asp-for="content">Content</label>
+        <input asp-for="content" />
+    </p>
+    <p>
+        <button type="submit">Create</button>
+    </p>
+
+    <button asp-controlle="Blog" asp-action="Index">Cancel</button><br />
+</form>

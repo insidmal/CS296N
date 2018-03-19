@@ -12,9 +12,10 @@ using System;
 namespace BuyOurTShirts.Migrations
 {
     [DbContext(typeof(BotsDbContext))]
-    partial class BotsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180319100237_Updates")]
+    partial class Updates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

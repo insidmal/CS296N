@@ -6,7 +6,7 @@ namespace BuyOurTShirts.Repositories
 {
     public interface IMediaRepository
     {
-        Task<int> Add(Media media);
+        int Add(Media media);
         int Edit(Media media);
         int Delete(int id);
 

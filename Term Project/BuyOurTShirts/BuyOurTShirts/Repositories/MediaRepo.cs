@@ -19,7 +19,7 @@ namespace BuyOurTShirts.Repositories
             context = ctx;
         }
 
-        public async Task<int> Add(Media media)
+        public int Add(Media media)
         {
             context.Media.Add(media);
             return context.SaveChanges();
@@ -27,7 +27,7 @@ namespace BuyOurTShirts.Repositories
 
         public int Delete(int id)
         {
-            var media = context.Media.First(a => a.ID == id);
+            var media = context.Media.FirstOrDefault(a => a.ID == id);
             context.Media.Remove(media);
             return context.SaveChanges();
         }
@@ -41,7 +41,7 @@ namespace BuyOurTShirts.Repositories
         public List<Media> GetAllMedia() => context.Media.ToList();
         public List<Media> GetAllMediaByType(MediaType mt) => context.Media.Include(a=>a.mediaType==mt).ToList();
 
-        public Media GetMediaById(int id) =>context.Media.First(a => a.ID == id);
+        public Media GetMediaById(int id) =>context.Media.FirstOrDefault(a => a.ID == id);
         public List<MediaType> GetAllMediaTypes() => new List<MediaType> { MediaType.Audio, MediaType.Image, MediaType.Video };
 
     }

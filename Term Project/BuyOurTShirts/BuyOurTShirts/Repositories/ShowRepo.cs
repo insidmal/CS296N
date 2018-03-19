@@ -24,7 +24,7 @@ namespace BuyOurTShirts.Repositories
 
         public int Delete(int id)
         {
-            var show = context.Show.First(a => a.ID == id);
+            var show = context.Show.FirstOrDefault(a => a.ID == id);
             context.Show.Remove(show);
             return context.SaveChanges();
         }
@@ -44,12 +44,12 @@ namespace BuyOurTShirts.Repositories
         public List<ShowType> GetAllShowTypes() => new List<ShowType> { ShowType.Private, ShowType.Public };
 
         public Show GetShowById(int id) {
-            var show = context.Show.First(a => a.ID == id);
+            var show = context.Show.FirstOrDefault(a => a.ID == id);
             show.venue = GetShowVenue(show.VenueID);
             return show;
          }
 
-        private Venue GetShowVenue(int id) => context.Venue.First(a => a.ID == id);           
+        private Venue GetShowVenue(int id) => context.Venue.FirstOrDefault(a => a.ID == id);           
         
     }
 }

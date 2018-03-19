@@ -9,6 +9,7 @@ namespace BuyOurTShirts.Models
     {
         public int ID { get; set; }
         public Account account { get; set; }
+        public string AccountId { get; set; }
         public Media media { get; set; }
         public string title { get; set; }
         public string summary { get; set; }
