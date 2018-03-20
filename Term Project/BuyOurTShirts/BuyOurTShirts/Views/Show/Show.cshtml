@@ -1,0 +1,21 @@
+﻿@model Show
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>@Model.name</h2>
+<strong>General Information</strong>
+<br />Date: @Model.date
+<br />Cost: @Model.cost
+@if(Model.type==ShowType.Public)
+{
+
+    <br />Venue
+    <br /><a asp-controller="Venue" asp-action="Venue" asp-route-id="@Model.venue.ID">@Model.venue.name</a>
+}
+else
+{
+    <p></p><strong>This is a Private Show</strong></p>
+
+}
+

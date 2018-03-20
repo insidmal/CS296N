@@ -37,7 +37,7 @@ namespace BuyOurTShirts.Repositories
 
         public List<Show> GetAllShows()
         {
-            List<Show> shows = context.Show.ToList();
+            List<Show> shows = context.Show.Where(a=>a.date>DateTime.Now).ToList();
              foreach (Show sh in shows) sh.venue = GetShowVenue(sh.VenueID);
             return shows;
         }
@@ -48,6 +48,9 @@ namespace BuyOurTShirts.Repositories
             show.venue = GetShowVenue(show.VenueID);
             return show;
          }
+
+        public List<Show> GetShowsByVenue(int id) => context.Show.Where(a => a.VenueID == id && a.date>DateTime.Now).ToList();
+        
 
         private Venue GetShowVenue(int id) => context.Venue.FirstOrDefault(a => a.ID == id);
         

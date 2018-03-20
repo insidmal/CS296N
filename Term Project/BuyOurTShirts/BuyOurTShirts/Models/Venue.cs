@@ -15,5 +15,6 @@ namespace BuyOurTShirts.Models
         public string state { get; set; }
         public string wazeNav { get; set; }
         public string googleNav { get; set; }
+        public List<Show> Shows { get; set; }
     }
 }

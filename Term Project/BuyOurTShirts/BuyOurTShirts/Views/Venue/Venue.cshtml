@@ -1,0 +1,31 @@
+﻿@model Venue
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>@Model.name</h2>
+<strong>Address</strong><br />
+@Model.address<br />
+@Model.city, @Model.state<br />&nbsp;<br />
+@if(Model.wazeNav.Length>1 || Model.googleNav.Length > 1) { <strong>Directions</strong><br />}
+@if(Model.wazeNav.Length>1) { <a href="@Model.wazeNav" target="_blank">Waze Directions</a><br /> }
+@if (Model.googleNav.Length > 1) { <a href="@Model.googleNav" target="_blank">Google Maps Directions</a><br /> }
+&nbsp;<br />
+@if (Model.Shows.Count > 0)
+{
+    <strong>Upcoming Shows</strong><br />
+    <table cellpadding="4" border="0">
+        <tr><th>Show Name</th><th>Date</th><th>Cost</th></tr>
+       
+        
+    @foreach (Show s in Model.Shows)
+    {
+        <tr><td><a asp-action="Show" asp-controller="Show" asp-route-id="@s.ID">@s.name</a></td><td>@s.date</td><td>$@s.cost</td></tr>
+    }
+
+
+    </table>
+
+}
+
+

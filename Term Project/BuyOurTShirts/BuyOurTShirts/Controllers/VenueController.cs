@@ -1,4 +1,5 @@
-﻿using BuyOurTShirts.Repositories;
+﻿using BuyOurTShirts.Models;
+using BuyOurTShirts.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuyOurTShirts.Controllers
@@ -14,9 +15,12 @@ namespace BuyOurTShirts.Controllers
             showRepo = sR;
         }
 
-        // GET: Shows
         public IActionResult Index() => View(venueRepo.GetAllVenues());
-        public IActionResult Show(int id) => View(venueRepo.GetVenueById(id));
-
+        public IActionResult Venue(int id)
+        {
+            Venue v = venueRepo.GetVenueById(id);
+            v.Shows = showRepo.GetShowsByVenue(v.ID);
+            return View(v);
+        }
     }
 }

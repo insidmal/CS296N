@@ -35,9 +35,6 @@ namespace BuyOurTShirts.Repositories
         }
 
         public List<Venue> GetAllVenues() => context.Venue.ToList();
-        
-
         public Venue GetVenueById(int id) => context.Venue.FirstOrDefault(a => a.ID == id);
-        
     }
 }

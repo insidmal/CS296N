@@ -10,11 +10,10 @@ namespace BuyOurTShirts.Repositories
     {
         List<Show> GetAllShows();
         List<ShowType> GetAllShowTypes();
-
+        List<Show> GetShowsByVenue(int iD);
         Show GetShowById(int id);
         int Add(Show show);
         int Edit(Show show);
         int Delete(int id);
-
     }
 }
