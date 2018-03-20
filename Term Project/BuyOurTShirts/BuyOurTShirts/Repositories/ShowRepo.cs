@@ -49,7 +49,7 @@ namespace BuyOurTShirts.Repositories
             return show;
          }
 
-        private Venue GetShowVenue(int id) => context.Venue.FirstOrDefault(a => a.ID == id);           
+        private Venue GetShowVenue(int id) => context.Venue.FirstOrDefault(a => a.ID == id);
         
     }
 }
