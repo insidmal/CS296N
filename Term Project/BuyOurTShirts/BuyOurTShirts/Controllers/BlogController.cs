@@ -1,5 +1,6 @@
 ﻿using BuyOurTShirts.Models;
 using BuyOurTShirts.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -23,10 +24,12 @@ namespace BuyOurTShirts.Controllers
         // GET: Blog
         public IActionResult Index() =>View(blogRepo.GetAllPosts());
         public IActionResult Post(int id) => View(blogRepo.GetPostById(id));
+        [Authorize(Roles = "Band Member")]
         public IActionResult Create() => View();
+        [Authorize(Roles = "Band Member")]
         public IActionResult Edit(int id) => View(blogRepo.GetPostById(id));
 
-
+        [Authorize(Roles = "Band Member")]
         [HttpPost]
         public IActionResult Create(Blog blog)
         {
@@ -34,7 +37,7 @@ namespace BuyOurTShirts.Controllers
             blogRepo.Add(blog);
             return View("Post", blog);
         }
-
+        [Authorize(Roles = "Band Member")]
         [HttpPost]
         public IActionResult Edit(Blog blog)
         {
@@ -42,7 +45,8 @@ namespace BuyOurTShirts.Controllers
             blogRepo.Edit(blog);
             return View("Post", blog);
         }
-        
+
+        [Authorize(Roles = "Band Member")]
         public IActionResult Delete(int id)
         {
             var blog = blogRepo.GetPostById(id);

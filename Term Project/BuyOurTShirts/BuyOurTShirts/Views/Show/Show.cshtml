@@ -10,12 +10,12 @@
 @if(Model.type==ShowType.Public)
 {
 
-    <br />Venue
-    <br /><a asp-controller="Venue" asp-action="Venue" asp-route-id="@Model.venue.ID">@Model.venue.name</a>
+    <br />@Html.Raw("Venue");
+    <br /><a asp-controller="Venue" asp-action="Venue" asp-route-id="@Model.VenueID">@Model.venue.name</a>
 }
 else
 {
-    <p></p><strong>This is a Private Show</strong></p>
+    <p><strong>This is a Private Show</strong></p>
 
 }
 

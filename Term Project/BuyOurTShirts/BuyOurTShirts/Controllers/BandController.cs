@@ -1,12 +1,11 @@
 ﻿using BuyOurTShirts.Models;
 using BuyOurTShirts.Repositories;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace BuyOurTShirts.Controllers
 {
+    [Authorize(Roles = "Band Member")]
     public class BandController : Controller
     {
         // GET: Band

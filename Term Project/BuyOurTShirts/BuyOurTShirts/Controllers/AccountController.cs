@@ -66,7 +66,7 @@ namespace BuyOurTShirts.Controllers
                             acct, model.Password, false, false);
                     if (result.Succeeded)
                     {
-                        return Redirect(returnUrl ?? "/");
+                        return Redirect(returnUrl ?? "Account/Index");
                     }
                 }
 
@@ -167,7 +167,7 @@ namespace BuyOurTShirts.Controllers
                 }
                 
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Account");
         }
 
         //account methods 
