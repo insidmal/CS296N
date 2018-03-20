@@ -13,12 +13,10 @@ namespace BuyOurTShirts.Controllers
         private IBlogRepository blogRepo;
         private UserManager<Account> userManager;
 
-
-
         public BlogController(IBlogRepository bR, UserManager<Account> uM)
         {
             blogRepo = bR;
-
+            userManager = uM;
         }
 
         // GET: Blog

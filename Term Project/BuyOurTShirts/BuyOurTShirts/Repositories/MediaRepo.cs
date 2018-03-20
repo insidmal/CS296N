@@ -39,7 +39,7 @@ namespace BuyOurTShirts.Repositories
         }
 
         public List<Media> GetAllMedia() => context.Media.ToList();
-        public List<Media> GetAllMediaByType(MediaType mt) => context.Media.Include(a=>a.mediaType==mt).ToList();
+        public List<Media> GetAllMediaByType(MediaType mt) => context.Media.Where(a=>a.mediaType == mt).ToList();
 
         public Media GetMediaById(int id) =>context.Media.FirstOrDefault(a => a.ID == id);
         public List<MediaType> GetAllMediaTypes() => new List<MediaType> { MediaType.Audio, MediaType.Image, MediaType.Video };

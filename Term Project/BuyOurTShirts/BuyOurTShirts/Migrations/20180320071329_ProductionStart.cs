@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace BuyOurTShirts.Migrations
 {
-    public partial class initial : Migration
+    public partial class ProductionStart : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,6 +52,23 @@ namespace BuyOurTShirts.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Media",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CollectionName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    mediaType = table.Column<int>(type: "int", nullable: false),
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    resourceLink = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Media", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -180,83 +197,12 @@ namespace BuyOurTShirts.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comment",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    accountId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    parentId = table.Column<int>(type: "int", nullable: false),
-                    parentType = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comment", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Comment_AspNetUsers_accountId",
-                        column: x => x.accountId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Media",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    accountId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    mediaType = table.Column<int>(type: "int", nullable: false),
-                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    resourceLink = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Media", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Media_AspNetUsers_accountId",
-                        column: x => x.accountId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Show",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    cost = table.Column<float>(type: "real", nullable: false),
-                    date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    minAge = table.Column<int>(type: "int", nullable: false),
-                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    type = table.Column<int>(type: "int", nullable: false),
-                    venueID = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Show", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Show_Venue_venueID",
-                        column: x => x.venueID,
-                        principalTable: "Venue",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Blog",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    accountId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    AccountId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     content = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     mediaID = table.Column<int>(type: "int", nullable: true),
                     summary = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -266,8 +212,8 @@ namespace BuyOurTShirts.Migrations
                 {
                     table.PrimaryKey("PK_Blog", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Blog_AspNetUsers_accountId",
-                        column: x => x.accountId,
+                        name: "FK_Blog_AspNetUsers_AccountId",
+                        column: x => x.AccountId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -277,6 +223,31 @@ namespace BuyOurTShirts.Migrations
                         principalTable: "Media",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Show",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    VenueID = table.Column<int>(type: "int", nullable: false),
+                    cost = table.Column<float>(type: "real", nullable: false),
+                    date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    minAge = table.Column<int>(type: "int", nullable: false),
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    type = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Show", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Show_Venue_VenueID",
+                        column: x => x.VenueID,
+                        principalTable: "Venue",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -319,9 +290,9 @@ namespace BuyOurTShirts.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Blog_accountId",
+                name: "IX_Blog_AccountId",
                 table: "Blog",
-                column: "accountId");
+                column: "AccountId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Blog_mediaID",
@@ -329,19 +300,9 @@ namespace BuyOurTShirts.Migrations
                 column: "mediaID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comment_accountId",
-                table: "Comment",
-                column: "accountId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Media_accountId",
-                table: "Media",
-                column: "accountId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Show_venueID",
+                name: "IX_Show_VenueID",
                 table: "Show",
-                column: "venueID");
+                column: "VenueID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -365,22 +326,19 @@ namespace BuyOurTShirts.Migrations
                 name: "Blog");
 
             migrationBuilder.DropTable(
-                name: "Comment");
-
-            migrationBuilder.DropTable(
                 name: "Show");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
                 name: "Media");
 
             migrationBuilder.DropTable(
                 name: "Venue");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
         }
     }
 }

@@ -146,7 +146,7 @@ namespace BuyOurTShirts.Controllers
 
         #region rolePosts
 
-        //[Authorize(Roles = "admin")]
+
         [HttpPost]
         public async Task<IActionResult> RoleCreate([Required]string name)
         {

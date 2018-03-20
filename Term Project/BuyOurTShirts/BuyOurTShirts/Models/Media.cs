@@ -12,6 +12,7 @@ namespace BuyOurTShirts.Models
         public string name { get; set; }
         public string description { get; set; }
         public MediaType mediaType { get; set; }
+        public string CollectionName { get; set; }
     }
 
     public enum MediaType

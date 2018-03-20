@@ -26,9 +26,7 @@ namespace BuyOurTShirts.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("AccountId");
-
-                    b.Property<string>("accountId");
+                    b.Property<string>("AccountId");
 
                     b.Property<string>("content");
 
@@ -40,7 +38,7 @@ namespace BuyOurTShirts.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("accountId");
+                    b.HasIndex("AccountId");
 
                     b.HasIndex("mediaID");
 
@@ -51,6 +49,8 @@ namespace BuyOurTShirts.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CollectionName");
 
                     b.Property<string>("description");
 
@@ -302,7 +302,7 @@ namespace BuyOurTShirts.Migrations
                 {
                     b.HasOne("BuyOurTShirts.Models.Account", "account")
                         .WithMany()
-                        .HasForeignKey("accountId");
+                        .HasForeignKey("AccountId");
 
                     b.HasOne("BuyOurTShirts.Models.Media", "media")
                         .WithMany()
@@ -312,7 +312,7 @@ namespace BuyOurTShirts.Migrations
             modelBuilder.Entity("BuyOurTShirts.Models.Show", b =>
                 {
                     b.HasOne("BuyOurTShirts.Models.Venue", "venue")
-                        .WithMany()
+                        .WithMany("Shows")
                         .HasForeignKey("VenueID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

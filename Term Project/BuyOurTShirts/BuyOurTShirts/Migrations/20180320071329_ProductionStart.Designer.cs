@@ -12,8 +12,8 @@ using System;
 namespace BuyOurTShirts.Migrations
 {
     [DbContext(typeof(BotsDbContext))]
-    [Migration("20180318221840_initial")]
-    partial class initial
+    [Migration("20180320071329_ProductionStart")]
+    partial class ProductionStart
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,7 +27,7 @@ namespace BuyOurTShirts.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("accountId");
+                    b.Property<string>("AccountId");
 
                     b.Property<string>("content");
 
@@ -39,33 +39,11 @@ namespace BuyOurTShirts.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("accountId");
+                    b.HasIndex("AccountId");
 
                     b.HasIndex("mediaID");
 
                     b.ToTable("Blog");
-                });
-
-            modelBuilder.Entity("BuyOurTShirts.Models.Comment", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("accountId");
-
-                    b.Property<string>("comment");
-
-                    b.Property<DateTime>("date");
-
-                    b.Property<int>("parentId");
-
-                    b.Property<int>("parentType");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("accountId");
-
-                    b.ToTable("Comment");
                 });
 
             modelBuilder.Entity("BuyOurTShirts.Models.Media", b =>
@@ -73,7 +51,7 @@ namespace BuyOurTShirts.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("accountId");
+                    b.Property<string>("CollectionName");
 
                     b.Property<string>("description");
 
@@ -85,8 +63,6 @@ namespace BuyOurTShirts.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("accountId");
-
                     b.ToTable("Media");
                 });
 
@@ -94,6 +70,8 @@ namespace BuyOurTShirts.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("VenueID");
 
                     b.Property<float>("cost");
 
@@ -107,11 +85,9 @@ namespace BuyOurTShirts.Migrations
 
                     b.Property<int>("type");
 
-                    b.Property<int?>("venueID");
-
                     b.HasKey("ID");
 
-                    b.HasIndex("venueID");
+                    b.HasIndex("VenueID");
 
                     b.ToTable("Show");
                 });
@@ -327,32 +303,19 @@ namespace BuyOurTShirts.Migrations
                 {
                     b.HasOne("BuyOurTShirts.Models.Account", "account")
                         .WithMany()
-                        .HasForeignKey("accountId");
+                        .HasForeignKey("AccountId");
 
                     b.HasOne("BuyOurTShirts.Models.Media", "media")
                         .WithMany()
                         .HasForeignKey("mediaID");
                 });
 
-            modelBuilder.Entity("BuyOurTShirts.Models.Comment", b =>
-                {
-                    b.HasOne("BuyOurTShirts.Models.Account", "account")
-                        .WithMany()
-                        .HasForeignKey("accountId");
-                });
-
-            modelBuilder.Entity("BuyOurTShirts.Models.Media", b =>
-                {
-                    b.HasOne("BuyOurTShirts.Models.Account", "account")
-                        .WithMany()
-                        .HasForeignKey("accountId");
-                });
-
             modelBuilder.Entity("BuyOurTShirts.Models.Show", b =>
                 {
                     b.HasOne("BuyOurTShirts.Models.Venue", "venue")
-                        .WithMany()
-                        .HasForeignKey("venueID");
+                        .WithMany("Shows")
+                        .HasForeignKey("VenueID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -1,0 +1,32 @@
+﻿@model Media
+@{
+    ViewBag.Title = Model.name;
+}
+<h2>@Model.name</h2>
+
+
+@if (Model.mediaType == MediaType.Audio)
+{
+    <p>
+        @Model.resourceLink
+    </p>
+    <a asp-for="Songs">View All Songs</a>
+}
+else if (Model.mediaType == MediaType.Video)
+{
+<p>
+    @Model.resourceLink
+</p>
+<a asp-for="Videos">View All Videos</a>
+
+}
+else if (Model.mediaType == MediaType.Image)
+{
+    <p>
+        <a href="@Model.resourceLink" target="_blank"><img src="@Model.resourceLink" width="60%" height="auto" /></a>
+    </p>
+    <a asp-for="Pictures">View All Images</a>
+
+}
+
+

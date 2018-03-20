@@ -19,6 +19,10 @@
         <input asp-for="description" />
     </p>
     <p>
+        <label asp-for="CollectionName">Collection</label>
+        <input asp-for="CollectionName" />
+    </p>
+    <p>
         <label asp-for="mediaType">Type</label>
 
         <select asp-for="mediaType" class="form-control" asp-items="@(new SelectList(@ViewBag.ListOfTypes))"></select>

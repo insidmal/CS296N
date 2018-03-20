@@ -1,7 +1,14 @@
-﻿
+﻿@model List<Media>
 @{
-    ViewBag.Title = "Pictures";
+    ViewBag.Title = "View Pictures";
 }
+<center>
+    <h2>Pictures</h2><br />Click an Image to View Full Size
+    <p>
+        @foreach (Media m in Model)
+        {
+            <a href="@m.resourceLink" target="_blank"><img src="@m.resourceLink" width="auto" height="40px" /></a>
 
-<h2>Pictures</h2>
-
+        }
+    </p>
+</center>
