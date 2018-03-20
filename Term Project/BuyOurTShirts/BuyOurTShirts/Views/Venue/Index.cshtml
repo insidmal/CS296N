@@ -1,0 +1,12 @@
+﻿@model List<Venue>
+@{
+    ViewBag.Title = "Venues";
+}
+
+<h2>Venues</h2>
+@foreach (Venue v in Model)
+{
+    <strong><font size="+1"><a asp-action="Venue" asp-route-id="@v.ID">@v.name</a></font></strong><br />
+    @v.address @v.city @v.state <hr />
+}
+

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Media>
+@{
+    ViewData["Title"] = "View Media";
+}
+
+<h2>View Media</h2>
+
+<span style="color:red">@ViewData["Message"]</span>
+
+<table cellpadding="3">
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>URL</th>
+
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <tr><td colspan="3">No Media</td></tr>
+    }
+    else
+    {
+        foreach (Media media in Model)
+        {
+            <tr>
+                <td>@media.name</td>
+                <td>@media.mediaType</td>
+                <td><a href="@media.resourceLink" target="_blank">@media.resourceLink</a></td>
+
+                <td>
+                    <form asp-action="MediaEdit" asp-route-id="@media.ID" method="get">
+                        <button type="submit" class="btn btn-sm btn-primary">Edit</button>
+                    </form>
+                </td>
+                <td>
+                    <form asp-action="MediaDelete" asp-route-id="@media.ID" method="post">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+<a asp-action="MediaCreate">Add Media</a><br />

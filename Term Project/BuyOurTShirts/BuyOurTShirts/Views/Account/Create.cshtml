@@ -1,0 +1,39 @@
+﻿@model Account
+@{
+    ViewBag.Title = "Create Account";
+}
+
+<h2>Create an Account</h2>
+
+<span style="color:red">@ViewData["Message"]</span>
+
+<div asp-validation-summary=" All"></div>
+
+<form asp-action="Create" method="post">
+    <p>
+        <label asp-for="FirstName">First Name</label>
+        <input asp-for="FirstName" />
+    </p>
+
+    <p>
+        <label asp-for="LastName">Last Name</label>
+        <input asp-for="LastName" />
+    </p>
+    <p>
+        <label asp-for="UserName">User Name</label>
+        <input asp-for="UserName" />
+    </p>
+    <p>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" />
+    </p>
+    <p>
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" />
+    </p>
+    <p>
+        <button type="submit">Create</button>
+    </p>
+
+    <button asp-controlle="Home" asp-action="Index">Cancel</button><br />
+</form>

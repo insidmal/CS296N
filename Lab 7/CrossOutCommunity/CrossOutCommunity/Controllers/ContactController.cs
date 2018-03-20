@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CrossOutCommunity.Models;
 using CrossOutCommunity.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CrossOutCommunity.Controllers
@@ -23,6 +24,7 @@ namespace CrossOutCommunity.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Contact(Contact c)
         {
@@ -31,6 +33,7 @@ namespace CrossOutCommunity.Controllers
             return View(c);
         }
 
+        [Authorize]
         [HttpPost]
         public RedirectToActionResult Contact(string name, string email, string message)
         {
@@ -47,6 +50,7 @@ namespace CrossOutCommunity.Controllers
             return RedirectToAction("ViewContact");
         }
 
+        [Authorize(Roles = "member")]
         public ViewResult ViewContact()
         {
             

@@ -1,0 +1,12 @@
+﻿@model Blog
+@{
+    ViewBag.Title = Model.title + " on ";
+}
+
+<h2>@Model.title</h2>
+@Model.content
+<p />
+@if (User.IsInRole("Band Member"))
+{
+<a asp-action="edit" asp-route-id="@Model.ID">Edit</a>
+}

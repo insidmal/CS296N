@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Blog>
+@{
+    ViewBag.Title = "News";
+}
+
+<h2>News</h2>
+@foreach (Blog bl in Model)
+{
+
+    <h3><a asp-action="Post" asp-route-id="@bl.ID">@bl.title</a></h3><br />@bl.summary<hr />
+
+}

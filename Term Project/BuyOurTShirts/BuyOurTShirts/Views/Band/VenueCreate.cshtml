@@ -1,0 +1,49 @@
+﻿@model Venue
+@{
+    ViewBag.Title = "Add Venue";
+}
+
+<h2>Add a Venue</h2>
+
+<span style="color:red">@ViewData["Message"]</span>
+
+<div asp-validation-summary=" All"></div>
+
+<form asp-action="VenueCreate" method="post">
+    <p>
+        <label asp-for="name">Venue Name</label>
+        <input asp-for="name" />
+    </p>
+
+    <p>
+        <label asp-for="address">Street Address</label>
+        <input asp-for="address" />
+    </p>
+    <p>
+        <label asp-for="city">City</label>
+        <input asp-for="city" />
+    </p>
+    <p>
+        <label asp-for="state">State</label>
+        <input asp-for="state" />
+    </p>
+    <p>
+        <label asp-for="description">Description</label>
+        <input asp-for="description" />
+    </p>
+    <p>
+        <label asp-for="wazeNav">Waze Nav Link</label>
+        <input asp-for="wazeNav" />
+    </p>
+    <p>
+        <label asp-for="googleNav">Google Maps Link</label>
+        <input asp-for="googleNav" />
+    </p>
+
+
+    <p>
+        <button type="submit">Create</button>
+    </p>
+
+    <button asp-controlle="Band" asp-action="VenueList">Cancel</button><br />
+</form>

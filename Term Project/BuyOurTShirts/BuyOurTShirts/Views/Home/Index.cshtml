@@ -1,0 +1,11 @@
+﻿@model Blog
+@{
+    ViewBag.Title = "";
+}
+
+
+<h2>Welcome</h2>
+Modern rock quartet based in Eugene Oregon. Specializing in Drinking to Excess.  Look for our EP "Retold" coming soon.
+<hr />
+<h2><a asp-controller="Blog" asp-action="Post" asp-route-id="@Model.ID">@Model.title</a></h2>
+@Model.summary

@@ -1,0 +1,22 @@
+﻿@model List<Media>
+    @{
+    ViewBag.Title = "Album Songs";
+    }
+    <center>
+        <h2>Songs</h2><br />Click a Title to Listen
+        <p>
+            <table cellpadding="3">
+                <tr>
+                    <th>Song Title</th>
+                    <th>Album</th>
+
+                </tr>
+                @foreach (Media m in Model)
+            {
+                    <tr><td><a asp-action="Item" asp-route-id="@m.ID">@m.name</a></td><td>@m.CollectionName</td></tr>
+                    <tr><td colspan="2">@m.description</td></tr>
+
+                }
+            </table>
+        </p>
+    </center>
