@@ -13,7 +13,7 @@
                 </tr>
                 @foreach (Media m in Model)
             {
-                    <tr><td><a asp-action="Item" asp-route-for="@m.ID">@m.name</a></td><td>@m.CollectionName</td></tr>
+                    <tr><td><a asp-action="Item" asp-route-id="@m.ID">@m.name</a></td><td>@m.CollectionName</td></tr>
                     <tr><td colspan="2">@m.description</td></tr>
 
                 }

@@ -6,7 +6,7 @@
     <h2>Videos</h2><br />Click a Title to Watch
     <p>
         @foreach(Media m in Model) { 
-        <a asp-action="Item" asp-route-for="@m.ID">@m.name</a>
+        <a asp-action="Item" asp-route-id="@m.ID">@m.name</a>
                     @m.description
         <hr />
         }

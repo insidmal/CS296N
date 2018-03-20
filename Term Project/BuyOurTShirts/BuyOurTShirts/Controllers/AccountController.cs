@@ -66,7 +66,7 @@ namespace BuyOurTShirts.Controllers
                             acct, model.Password, false, false);
                     if (result.Succeeded)
                     {
-                        return Redirect(returnUrl ?? "Account/Index");
+                        return Redirect(returnUrl ?? "Index");
                     }
                 }
 

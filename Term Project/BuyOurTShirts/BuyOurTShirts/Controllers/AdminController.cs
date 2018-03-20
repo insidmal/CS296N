@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BuyOurTShirts.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    //[Authorize(Roles = "Administrator")]
     public class AdminController : Controller
     {
         // GET: Admin
@@ -94,7 +94,6 @@ namespace BuyOurTShirts.Controllers
 
 
 
-        //[Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<IActionResult> AccountDelete(string id)
         {
