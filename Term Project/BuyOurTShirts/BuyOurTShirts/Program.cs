@@ -7,6 +7,8 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using BuyOurTShirts.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BuyOurTShirts
 {
@@ -14,6 +16,17 @@ namespace BuyOurTShirts
     {
         public static void Main(string[] args)
         {
+            var host = BuildWebHost(args);
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                try { SeedData.Initialize(services); }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred while seeding the database.");
+                }
+            }
             BuildWebHost(args).Run();
         }
 
