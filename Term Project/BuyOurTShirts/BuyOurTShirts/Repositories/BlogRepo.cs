@@ -17,6 +17,12 @@ namespace BuyOurTShirts.Repositories
         public BlogRepo(BotsDbContext ctx)
         {
             context = ctx;
+
+            if (!context.Blog.Any())
+            {
+                context.Blog.Add(new Blog { title = "This is a Blog Post", summary = "A summary of the most recent blog posted is listed on the home page, you can click it's title to view the full post.", content = "This is the actual blog post, here is some text.  It really doesn't mean anything, yet here it is anyway!" });
+                context.SaveChanges();
+            }
         }
 
         public int Add(Blog blog)

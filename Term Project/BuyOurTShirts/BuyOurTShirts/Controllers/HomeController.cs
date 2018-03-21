@@ -16,10 +16,8 @@ namespace BuyOurTShirts.Controllers
         }
 
 
-        public ActionResult Index()
-        {
-            return View(blogRepo.GetLatestPost() ?? new Blog { ID = 0, title = "", summary = "" });
-        }
+        public ActionResult Index() => View(blogRepo.GetLatestPost() ?? new Blog { ID = 0, title = "", summary = "" });
+       
 
         public ActionResult About()
         {
