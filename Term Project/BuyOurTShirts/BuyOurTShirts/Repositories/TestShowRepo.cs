@@ -9,7 +9,7 @@ namespace BuyOurTShirts.Repositories
     public class TestShowRepo : IShowRepository
     {
 
-        public List<Show> ShowList;
+        public List<Show> ShowList = new List<Show>();
 
 
 
