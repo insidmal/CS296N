@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BuyOurTShirts.Controllers
 {
-    //[Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator")]
     public class AdminController : Controller
     {
         // GET: Admin
